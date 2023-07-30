@@ -80,4 +80,24 @@ public interface CityRepository extends JpaRepository<City, Long> {
         return cities;
     }
 
+    default City findCityByName(String cityName) {
+
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/DNIT-Distancias.csv"))) {
+            String line;
+            String[] header;
+            int counter = 0;
+
+            line = br.readLine();
+            header = line.split(";");
+
+            for (String name: header) {
+                counter++;
+                if(cityName.toUpperCase().equals(name)) {return findCityById((long) counter);}
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        throw new ResourceNotFoundException("Cidade não existe com esse nome: " + cityName);
+    }
+
 }

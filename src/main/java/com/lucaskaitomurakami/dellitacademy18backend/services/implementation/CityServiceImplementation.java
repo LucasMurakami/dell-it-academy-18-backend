@@ -31,5 +31,12 @@ public class CityServiceImplementation implements CityService {
         return cities;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public CityDTO getCityByName(String cityName) {
+        City city = cityRepository.findCityByName(cityName);
+        return CityMapper.mapToCityDTO(city);
+    }
+
 
 }

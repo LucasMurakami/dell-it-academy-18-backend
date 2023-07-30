@@ -4,10 +4,7 @@ import com.lucaskaitomurakami.dellitacademy18backend.DTO.CityDTO;
 import com.lucaskaitomurakami.dellitacademy18backend.services.implementation.CityServiceImplementation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -29,7 +26,15 @@ public class CityController {
     // Build Get All Cities REST API
     @GetMapping
     public ResponseEntity<List<CityDTO>> getAllCities() {
-        List<CityDTO> cities = cityService.getAllCities();
-        return ResponseEntity.ok(cities);
+        List<CityDTO> citiesDTO = cityService.getAllCities();
+        return ResponseEntity.ok(citiesDTO);
     }
+
+    // Build Get City By Name REST API
+    @GetMapping("/name")
+    public ResponseEntity<CityDTO> getCityByName(@RequestParam(value = "name")String cityName) {
+        CityDTO cityDTO = cityService.getCityByName(cityName);
+        return ResponseEntity.ok(cityDTO);
+    }
+
 }

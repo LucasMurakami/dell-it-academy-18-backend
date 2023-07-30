@@ -9,4 +9,6 @@ public interface CityService {
     CityDTO getCity(Long cityId);
 
     List<CityDTO> getAllCities();
+
+    CityDTO getCityByName(String cityName);
 }
