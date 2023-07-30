@@ -2,7 +2,7 @@ package com.lucaskaitomurakami.dellitacademy18backend.repositories;
 
 import com.lucaskaitomurakami.dellitacademy18backend.Exceptions.ResourceNotFoundException;
 import com.lucaskaitomurakami.dellitacademy18backend.entities.City;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,10 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class CityRepository {
+public interface CityRepository extends JpaRepository<City, Long> {
 
-    public City findCityById(Long id) {
+    default City findCityById(Long id) {
         City city = new City();
 
         if (id > 24) {
@@ -48,7 +47,7 @@ public class CityRepository {
         return city;
     }
 
-    public List<City> findAllCities() {
+    default List<City> findAllCities() {
         List<City> cities = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/DNIT-Distancias.csv"))) {
