@@ -1,7 +1,7 @@
 package com.lucaskaitomurakami.dellitacademy18backend.controllers;
 
 import com.lucaskaitomurakami.dellitacademy18backend.DTO.CityDTO;
-import com.lucaskaitomurakami.dellitacademy18backend.services.CSVService;
+import com.lucaskaitomurakami.dellitacademy18backend.services.implementation.CityServiceImplementation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,14 +14,14 @@ import java.io.FileNotFoundException;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/cities")
-public class CSVController {
+public class CityController {
 
-    private CSVService csvService;
+    private CityServiceImplementation cityService;
 
     // Build Get City REST API
     @GetMapping("/{id}")
     public ResponseEntity<CityDTO> getCityById(@PathVariable("id") Long cityId) throws FileNotFoundException {
-        CityDTO cityDTO = csvService.getCityById(cityId);
+        CityDTO cityDTO = cityService.getCity(cityId);
         return ResponseEntity.ok(cityDTO);
     }
 }
