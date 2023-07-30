@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -23,5 +24,12 @@ public class CityController {
     public ResponseEntity<CityDTO> getCityById(@PathVariable("id") Long cityId) throws FileNotFoundException {
         CityDTO cityDTO = cityService.getCity(cityId);
         return ResponseEntity.ok(cityDTO);
+    }
+
+    // Build Get All Cities REST API
+    @GetMapping
+    public ResponseEntity<List<CityDTO>> getAllCities() {
+        List<CityDTO> cities = cityService.getAllCities();
+        return ResponseEntity.ok(cities);
     }
 }

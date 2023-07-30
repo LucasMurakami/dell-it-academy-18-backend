@@ -29,7 +29,7 @@ public class CityRepository {
             header = line.split(";");
             while (counter < id) {
                 line = br.readLine();
-                String[] values = line.split(";");
+                var values = line.split(";");
                 List<Integer> valuesInt = new ArrayList<>();
 
                 for (String value : values) {
@@ -46,6 +46,39 @@ public class CityRepository {
             throw new RuntimeException(e);
         }
         return city;
+    }
+
+    public List<City> findAllCities() {
+        List<City> cities = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/DNIT-Distancias.csv"))) {
+            String line;
+            String[] header;
+            int counter = 0;
+
+            line = br.readLine();
+            header = line.split(";");
+            while ((line = br.readLine()) != null) {
+                City city = new City();
+                var values = line.split(";");
+                List<Integer> valuesInt = new ArrayList<>();
+
+                for (String value : values) {
+                    valuesInt.add(Integer.parseInt(value));
+                }
+
+                city.setName(header[counter]);
+                counter++;
+
+                city.setDistances(valuesInt);
+                city.setId((long) counter);
+
+                cities.add(city);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return cities;
     }
 
 }

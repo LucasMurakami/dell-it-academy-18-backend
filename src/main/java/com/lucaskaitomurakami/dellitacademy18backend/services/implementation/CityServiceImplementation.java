@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class CityServiceImplementation implements CityService {
@@ -18,10 +20,15 @@ public class CityServiceImplementation implements CityService {
     @Override
     @Transactional(readOnly = true)
     public CityDTO getCity(Long cityId) {
-
         City city = cityRepository.findCityById(cityId);
-
         return CityMapper.mapToCityDTO(city);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CityDTO> getAllCities() {
+        List<CityDTO> cities = cityRepository.findAllCities().stream().map( (city) -> CityMapper.mapToCityDTO(city)).toList();
+        return cities;
     }
 
 
