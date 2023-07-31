@@ -18,7 +18,7 @@ public class CityController {
 
     // Build Get City REST API
     @GetMapping("/{id}")
-    public ResponseEntity<CityDTO> getCityById(@PathVariable("id") Long cityId) throws FileNotFoundException {
+    public ResponseEntity<CityDTO> getCityById(@PathVariable("id") Long cityId) {
         CityDTO cityDTO = cityService.getCity(cityId);
         return ResponseEntity.ok(cityDTO);
     }

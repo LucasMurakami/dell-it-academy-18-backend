@@ -15,9 +15,7 @@ public interface CityRepository extends JpaRepository<City, Long> {
     default City findCityById(Long id) {
         City city = new City();
 
-        if (id > 24) {
-            throw new ResourceNotFoundException("Cidade não existe com esse id: " + id);
-        }
+        if (id > 24) {throw new ResourceNotFoundException("Cidade não existe com esse id: " + id);}
 
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/DNIT-Distancias.csv"))) {
             String line;
@@ -31,9 +29,7 @@ public interface CityRepository extends JpaRepository<City, Long> {
                 var values = line.split(";");
                 List<Integer> valuesInt = new ArrayList<>();
 
-                for (String value : values) {
-                    valuesInt.add(Integer.parseInt(value));
-                }
+                for (String value : values) {valuesInt.add(Integer.parseInt(value));}
 
                 city.setName(header[counter]);
                 city.setDistances(valuesInt);
@@ -62,13 +58,10 @@ public interface CityRepository extends JpaRepository<City, Long> {
                 var values = line.split(";");
                 List<Integer> valuesInt = new ArrayList<>();
 
-                for (String value : values) {
-                    valuesInt.add(Integer.parseInt(value));
-                }
+                for (String value : values) {valuesInt.add(Integer.parseInt(value));}
 
                 city.setName(header[counter]);
                 counter++;
-
                 city.setDistances(valuesInt);
                 city.setId((long) counter);
 
@@ -98,6 +91,11 @@ public interface CityRepository extends JpaRepository<City, Long> {
             throw new RuntimeException(e);
         }
         throw new ResourceNotFoundException("Cidade não existe com esse nome: " + cityName);
+    }
+
+    default Integer findDistanceBetweenCities(City city1, City city2) {
+        int distance = city1.getDistances().get(Math.toIntExact(city2.getId()));
+        return distance;
     }
 
 }
