@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Logistic {
+public class Track {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
