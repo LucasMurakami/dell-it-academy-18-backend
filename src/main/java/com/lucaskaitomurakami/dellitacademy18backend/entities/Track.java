@@ -20,11 +20,13 @@ public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany
+    private List<City> citiesName;
     private String cityName1;
     private String cityName2;
     private Double priceByTrack;
     private Integer trackDistance;
-
     @OneToMany
     private Set<Truck> trucks = new HashSet<>();
 }

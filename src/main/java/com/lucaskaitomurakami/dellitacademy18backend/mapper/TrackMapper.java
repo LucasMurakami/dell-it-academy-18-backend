@@ -6,13 +6,14 @@ import org.springframework.beans.BeanUtils;
 
 public class TrackMapper {
 
-    public static TrackDTO mapToLogisticDTOfromLogistic(Track track) {
+    public static TrackDTO mapToTrackDTOFromTrack(Track track) {
         TrackDTO trackDTO = new TrackDTO();
         BeanUtils.copyProperties(track, trackDTO);
+        trackDTO.setTrucks( TruckMapper.mapToSetTruckDTO( track.getTrucks() ));
         return trackDTO;
     }
 
-    public static Track mapToLogisticFromLogisticDTO(TrackDTO trackDTO) {
+    public static Track mapToTrackFromTrackDTO(TrackDTO trackDTO) {
         Track track = new Track();
         BeanUtils.copyProperties(trackDTO, track);
         return track;
