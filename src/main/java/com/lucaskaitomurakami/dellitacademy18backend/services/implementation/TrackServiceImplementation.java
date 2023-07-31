@@ -1,5 +1,7 @@
 package com.lucaskaitomurakami.dellitacademy18backend.services.implementation;
 
+import com.lucaskaitomurakami.dellitacademy18backend.DTO.CityDTO;
+import com.lucaskaitomurakami.dellitacademy18backend.DTO.CityNameDTO;
 import com.lucaskaitomurakami.dellitacademy18backend.DTO.TrackDTO;
 import com.lucaskaitomurakami.dellitacademy18backend.DTO.TruckDTO;
 import com.lucaskaitomurakami.dellitacademy18backend.entities.Track;
@@ -13,7 +15,7 @@ import com.lucaskaitomurakami.dellitacademy18backend.services.TrackService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -26,11 +28,11 @@ public class TrackServiceImplementation implements TrackService {
 
 
     @Override
-    public TrackDTO createTrack(String cityName1, String cityName2, Set<TruckDTO> truckDTOSet) {
+    public TrackDTO createTrack(List<CityNameDTO> citiesDTOName, Set<TruckDTO> truckDTOSet) {
         Set<Truck> truckSet = TruckMapper.mapToSetTruck(truckDTOSet);
         StringBuilder truckId = new StringBuilder();
         for (Truck truck: truckSet) {truckId.append(truck.getId());}
-        Track track = trackRepository.createTrack(cityName1, cityName2, truckId.toString(), cityRepository, truckRepository);
+        Track track = trackRepository.createTrack(citiesDTOName.get(0).getName(), citiesDTOName.get(1).getName(), truckId.toString(), cityRepository, truckRepository);
         return TrackMapper.mapToTrackDTOFromTrack(track);
     }
 

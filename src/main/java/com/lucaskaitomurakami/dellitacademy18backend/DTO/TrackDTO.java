@@ -18,10 +18,9 @@ import java.util.Set;
 public class TrackDTO {
 
     private Long id;
-    private List<CityDTO> citiesName = new ArrayList<>();
-    private String cityName1;
-    private String cityName2;
+    private List<CityNameDTO> citiesName = new ArrayList<>();
+    private Set<TruckDTO> trucks = new HashSet<>();
     private Double priceByTrack;
     private Integer trackDistance;
-    private Set<TruckDTO> trucks = new HashSet<>();
+
 }

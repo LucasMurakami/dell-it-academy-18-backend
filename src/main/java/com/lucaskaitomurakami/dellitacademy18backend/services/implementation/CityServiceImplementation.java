@@ -21,13 +21,13 @@ public class CityServiceImplementation implements CityService {
     @Transactional(readOnly = true)
     public CityDTO getCity(Long cityId) {
         City city = cityRepository.findCityById(cityId);
-        return CityMapper.mapToCityDTO(city);
+        return CityMapper.mapToCityDTOFromCity(city);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<CityDTO> getAllCities() {
-        List<CityDTO> cities = cityRepository.findAllCities().stream().map( (city) -> CityMapper.mapToCityDTO(city)).toList();
+        List<CityDTO> cities = cityRepository.findAllCities().stream().map( (city) -> CityMapper.mapToCityDTOFromCity(city)).toList();
         return cities;
     }
 
@@ -35,7 +35,7 @@ public class CityServiceImplementation implements CityService {
     @Transactional(readOnly = true)
     public CityDTO getCityByName(String cityName) {
         City city = cityRepository.findCityByName(cityName);
-        return CityMapper.mapToCityDTO(city);
+        return CityMapper.mapToCityDTOFromCity(city);
     }
 
 

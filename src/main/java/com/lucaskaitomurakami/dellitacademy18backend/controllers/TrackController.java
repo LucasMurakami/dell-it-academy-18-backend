@@ -18,7 +18,7 @@ public class TrackController {
     // Build Add Create Track (Logistic) REST API
     @PostMapping
     public ResponseEntity<TrackDTO> createTrack(@RequestBody TrackDTO trackDTO) {
-        TrackDTO savedTrack = logisticServiceImplementation.createTrack(trackDTO.getCityName1(), trackDTO.getCityName2(), trackDTO.getTrucks());
+        TrackDTO savedTrack = logisticServiceImplementation.createTrack(trackDTO.getCitiesName(), trackDTO.getTrucks());
         return new ResponseEntity<>(savedTrack, HttpStatus.CREATED);
     }
 }

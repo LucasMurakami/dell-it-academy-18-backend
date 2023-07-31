@@ -23,10 +23,11 @@ public class Track {
 
     @OneToMany
     private List<City> citiesName;
-    private String cityName1;
-    private String cityName2;
-    private Double priceByTrack;
-    private Integer trackDistance;
+
     @OneToMany
     private Set<Truck> trucks = new HashSet<>();
+
+    private Double priceByTrack;
+    private Integer trackDistance;
+
 }
