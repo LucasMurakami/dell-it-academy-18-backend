@@ -19,22 +19,11 @@ public class Logistic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String cityName1;
-
     private String cityName2;
-
-    private Double totalPriceByTrack;
-
-    private Double priceByKmByTrack;
-
-    private Double averageProductPrice;
-
-    private Double priceByTypeTruck;
-
+    private String truckId;
     private String truckType;
+    private Double priceByTrack;
+    private Integer trackDistance;
 
-    private Long totalTrucks;
-
-    private Long totalProducts;
 }

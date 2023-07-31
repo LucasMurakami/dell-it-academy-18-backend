@@ -1,5 +1,6 @@
 package com.lucaskaitomurakami.dellitacademy18backend.repositories;
 
+import com.lucaskaitomurakami.dellitacademy18backend.Exceptions.InvalidInputException;
 import com.lucaskaitomurakami.dellitacademy18backend.Exceptions.ResourceNotFoundException;
 import com.lucaskaitomurakami.dellitacademy18backend.entities.City;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,6 +27,7 @@ public interface CityRepository extends JpaRepository<City, Long> {
             header = line.split(";");
             while (counter < id) {
                 line = br.readLine();
+
                 var values = line.split(";");
                 List<Integer> valuesInt = new ArrayList<>();
 
@@ -94,7 +96,11 @@ public interface CityRepository extends JpaRepository<City, Long> {
     }
 
     default Integer findDistanceBetweenCities(City city1, City city2) {
-        int distance = city1.getDistances().get(Math.toIntExact(city2.getId()));
+
+        if(city1.getName().equals(city2.getName()) ){
+            throw new InvalidInputException("Cidade de origem com mesmo destino da cidade de destino: " + city1.getName() + " e " + city2.getName());
+        }
+        int distance = city1.getDistances().get(Math.toIntExact(city2.getId() -1));
         return distance;
     }
 

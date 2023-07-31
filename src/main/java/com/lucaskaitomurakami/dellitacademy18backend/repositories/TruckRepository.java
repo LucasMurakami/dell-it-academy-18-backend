@@ -1,7 +1,6 @@
 package com.lucaskaitomurakami.dellitacademy18backend.repositories;
 
 import com.lucaskaitomurakami.dellitacademy18backend.Exceptions.ResourceNotFoundException;
-import com.lucaskaitomurakami.dellitacademy18backend.entities.City;
 import com.lucaskaitomurakami.dellitacademy18backend.entities.Truck;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -47,7 +46,6 @@ public interface TruckRepository extends JpaRepository<Truck, Long> {
 
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/Trucks.csv"))) {
             String line;
-            int counter = 0;
 
             //skip headers
             br.readLine();
@@ -70,6 +68,7 @@ public interface TruckRepository extends JpaRepository<Truck, Long> {
     }
 
     default Double totalPriceByTrack(Truck truck, int distance) {
-        return null;
+        double total = truck.getTransportPrice() * distance;
+        return total;
     }
 }

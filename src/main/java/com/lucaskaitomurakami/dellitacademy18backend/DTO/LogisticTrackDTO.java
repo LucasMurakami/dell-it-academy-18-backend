@@ -9,10 +9,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LogisticConsultDTO {
+public class LogisticTrackDTO {
 
     private Long id;
     private String cityName1;
     private String cityName2;
+    private String truckId;
     private String truckType;
+    private Double priceByTrack;
+    private Integer trackDistance;
 }
