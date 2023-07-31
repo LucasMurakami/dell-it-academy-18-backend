@@ -11,6 +11,8 @@ import com.lucaskaitomurakami.dellitacademy18backend.services.TrackService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class TrackServiceImplementation implements TrackService {
@@ -21,9 +23,10 @@ public class TrackServiceImplementation implements TrackService {
 
 
     @Override
-    public TrackDTO createTrack(String cityName1, String cityName2, String truckId) {
-        Truck truck = truckRepository.findTruckById(Long.valueOf(truckId));
-        Track track = trackRepository.createTrack(cityName1, cityName2, truck , cityRepository, truckRepository);
+    public TrackDTO createTrack(String cityName1, String cityName2, Set<Truck> truckSet) {
+        StringBuilder truckId = new StringBuilder();
+        for (Truck truck: truckSet) {truckId.append(truck.getId());}
+        Track track = trackRepository.createTrack(cityName1, cityName2, truckId.toString(), cityRepository, truckRepository);
         return TrackMapper.mapToLogisticDTOfromLogistic(track);
     }
 

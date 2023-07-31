@@ -1,13 +1,14 @@
 package com.lucaskaitomurakami.dellitacademy18backend.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,9 +22,9 @@ public class Track {
     private Long id;
     private String cityName1;
     private String cityName2;
-    private String truckId;
-    private String truckType;
     private Double priceByTrack;
     private Integer trackDistance;
 
+    @OneToMany
+    private Set<Truck> trucks = new HashSet<>();
 }

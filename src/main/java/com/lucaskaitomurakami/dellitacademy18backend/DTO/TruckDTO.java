@@ -1,5 +1,6 @@
 package com.lucaskaitomurakami.dellitacademy18backend.DTO;
 
+import com.lucaskaitomurakami.dellitacademy18backend.entities.Track;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
