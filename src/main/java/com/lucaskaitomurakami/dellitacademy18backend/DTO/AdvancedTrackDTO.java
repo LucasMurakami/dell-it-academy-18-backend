@@ -1,6 +1,5 @@
-package com.lucaskaitomurakami.dellitacademy18backend.entities;
+package com.lucaskaitomurakami.dellitacademy18backend.DTO;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,35 +7,21 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Track {
+public class AdvancedTrackDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToMany
-    private List<City> cities;
-
-    @OneToMany
-    private List<Truck> trucks;
-
-    @OneToMany
-    private List<Product> products;
-
+    private List<CityNameDTO> citiesName;
+    private List<TruckDTO> truckDTOS;
+    private List<ProductDTO> productDTOS;
     private Double priceByTrack;
     private Integer trackDistance;
-
     private Integer totalDistanceTracks;
     private Double totalPriceTracks;
     private Double priceByKM;
     private Double priceByProductType;
-
-    @ElementCollection
     private List<Double> priceByTruckType;
-
 }

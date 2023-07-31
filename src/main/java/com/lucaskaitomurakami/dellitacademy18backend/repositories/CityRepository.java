@@ -104,4 +104,14 @@ public interface CityRepository extends JpaRepository<City, Long> {
         return distance;
     }
 
+    default List<City> originAndDestinationCities(String cityName1, String cityName2) {
+        City city1, city2;
+        List<City> citiesName = new ArrayList<>();
+        city1 = findCityByName(cityName1);
+        city2 = findCityByName(cityName2);
+        citiesName.add(city1);
+        citiesName.add(city2);
+        return citiesName;
+    }
+
 }

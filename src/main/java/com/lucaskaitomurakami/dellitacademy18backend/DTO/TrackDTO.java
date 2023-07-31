@@ -19,7 +19,7 @@ public class TrackDTO {
 
     private Long id;
     private List<CityNameDTO> citiesName = new ArrayList<>();
-    private Set<TruckDTO> trucks = new HashSet<>();
+    private List<TruckDTO> trucks = new ArrayList<>();
     private Double priceByTrack;
     private Integer trackDistance;
 

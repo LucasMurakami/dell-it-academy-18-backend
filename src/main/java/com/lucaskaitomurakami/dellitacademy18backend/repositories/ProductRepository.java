@@ -12,4 +12,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
         return product;
     }
 
+    default Double totalWeigth(Product product) {
+        return product.getWeight() * product.getQuantity();
+    }
+
 }

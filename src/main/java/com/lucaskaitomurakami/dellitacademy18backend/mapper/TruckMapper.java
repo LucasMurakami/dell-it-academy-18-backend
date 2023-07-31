@@ -4,8 +4,7 @@ import com.lucaskaitomurakami.dellitacademy18backend.DTO.TruckDTO;
 import com.lucaskaitomurakami.dellitacademy18backend.entities.Truck;
 import org.springframework.beans.BeanUtils;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class TruckMapper {
@@ -22,11 +21,11 @@ public class TruckMapper {
         return truck;
     }
 
-    public static Set<Truck> mapToSetTruck(Set<TruckDTO> truckDTOSet){
-        return truckDTOSet.stream().map( (truckDTO) -> mapToTruck(truckDTO)).collect(Collectors.toSet());
+    public static List<Truck> mapToListTruck(List<TruckDTO> truckDTOList){
+        return truckDTOList.stream().map( (truckDTO) -> mapToTruck(truckDTO)).collect(Collectors.toList());
     }
 
-    public static Set<TruckDTO> mapToSetTruckDTO(Set<Truck> truckSet){
-        return truckSet.stream().map( (truck) -> mapToTruckDTO(truck)).collect(Collectors.toSet());
+    public static List<TruckDTO> mapToListTruckDTO(List<Truck> truckList){
+        return truckList.stream().map( (truck) -> mapToTruckDTO(truck)).collect(Collectors.toList());
     }
 }

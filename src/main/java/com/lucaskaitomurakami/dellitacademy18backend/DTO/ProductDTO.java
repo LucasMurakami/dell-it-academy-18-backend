@@ -12,5 +12,6 @@ import lombok.Setter;
 public class ProductDTO {
     private Long id;
     private String name;
-    private double weight;
+    private Double weight;
+    private Integer quantity;
 }

@@ -68,7 +68,30 @@ public interface TruckRepository extends JpaRepository<Truck, Long> {
     }
 
     default Double totalPriceByTrack(Truck truck, int distance) {
-        double total = truck.getTransportPrice() * distance;
-        return total;
+        return truck.getTransportPrice() * distance;
     }
+
+    default Double totalPriceByTrackAllTrucks(List<Truck> trucks, int distance) {
+        double result = 0;
+        for (Truck truck: trucks) {result += truck.getTransportPrice() * distance;}
+        return result;
+    }
+
+    default List<Truck> findBestTruckPrice(double weight, TruckRepository truckRepository) {
+        List<Truck> trucks = new ArrayList<>();
+        while(weight > 0) {
+            if(weight % 8000 < 8000 && weight >= 8000) {
+                trucks.add(truckRepository.findTruckById(3L));
+                weight -= 10000;
+            } else if (weight % 2000 < 2000 && weight > 2000) {
+                trucks.add(truckRepository.findTruckById(2L));
+                weight -= 4000;
+            }else {
+                trucks.add(truckRepository.findTruckById(1L));
+                weight -=1000;
+            }
+        }
+        return trucks;
+    }
+
 }

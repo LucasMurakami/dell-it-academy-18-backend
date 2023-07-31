@@ -5,6 +5,7 @@ import com.lucaskaitomurakami.dellitacademy18backend.DTO.CityNameDTO;
 import com.lucaskaitomurakami.dellitacademy18backend.entities.City;
 import org.springframework.beans.BeanUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CityMapper {
@@ -39,6 +40,12 @@ public class CityMapper {
         CityDTO cityDTO = new CityDTO();
         cityDTO.setName(cityNameDTO.getName());
         return cityDTO;
+    }
+
+    public static List<String> mapToStringListFromCityNameDTO(List<CityNameDTO> cityNameDTOList) {
+        List<String> result = new ArrayList<>();
+        for (CityNameDTO cityName:cityNameDTOList) {result.add(cityName.getName());}
+        return result;
     }
 
 }
